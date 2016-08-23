@@ -48,11 +48,6 @@ It depends on other workflow samples to upload models and retrieve the model URN
   ```
   node server.js 
   ```
-  or using the script
-  
-  ```
-  npm start
-  ```
 
 * Connect to you local server using a WebGL-compatible browser: [http://localhost:3000/](http://localhost:3000/)
 

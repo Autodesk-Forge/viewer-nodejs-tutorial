@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-forge-tutorial",
+  "version": "1.0.0",
+  "description": "Getting started with Forge Viewer API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaimerosales/nodejs-forge-tutorial.git"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.72.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "author": "Jaime Rosales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaimerosales/nodejs-forge-tutorial/issues"
+  },
+  "homepage": "https://github.com/jaimerosales/nodejs-forge-tutorial#readme"
+}

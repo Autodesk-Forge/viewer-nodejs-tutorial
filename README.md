@@ -100,9 +100,7 @@ function onError(error) {
 
 ```
 
-* Connect to you local server using a WebGL-compatible browser: [http://localhost:3000/](http://localhost:3000/)
-
-Now time to setup your server
+##Now time to setup your server
 
 * [Server](SERVER.md#Server)
   - [Step 1](SERVER.md#Step1)
@@ -112,6 +110,9 @@ Now time to setup your server
   ```
   node server.js 
   ```
+
+* Connect to you local server using a WebGL-compatible browser: [http://localhost:3000/](http://localhost:3000/)
+
 ## License
 
 That samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.

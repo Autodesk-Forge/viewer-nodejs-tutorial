@@ -11,15 +11,18 @@ Add the following to your Server.js file.
 var favicon = require('serve-favicon');
 var api = require('./routes/api');
 var express = require('express');
-
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-
 app.use('/', express.static(__dirname + '/www'));
 app.use(favicon(__dirname + '/www/images/favicon.ico'));
 
+/////////////////////////////////////////////////////////////////////////////////
+//
 // Use this route for proxying access token requests
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 app.use('/api', api);
 console.log('server api ', api);
 
@@ -36,13 +39,19 @@ Create your api.js file under routes folder to obtain your authorization token.
 Make sure you have created your credentials.js file and have added your API Keys.
 
 ```js
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Obtaining our Token 
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 var express = require('express');
 var request = require('request');
 var router = express.Router();
 
 var credentials = (require ('fs').existsSync (__dirname + '/../credentials.js') ?
-	require (__dirname + '/../credentials')
-	: (console.log ('No credentials.js file present, assuming using CONSUMERKEY & CONSUMERSECRET system variables.'), 
+    require (__dirname + '/../credentials')
+    : (console.log ('No credentials.js file present, assuming using CONSUMERKEY & CONSUMERSECRET system variables.'), 
     require (__dirname + '/../credentials_'))) ;
 
 router.get ('/token', function (req, res) {
@@ -56,7 +65,6 @@ router.get ('/token', function (req, res) {
 }) ;
 
 module.exports = router;
-
 
 ```
 

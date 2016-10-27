@@ -16,4 +16,66 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
-// See Readme file for JS code to insert here.
+// var defaultUrn = '<Replace with your ENCODED Base64 URN>';
+// var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Initialize function to the Viewer
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+// function initialize() {
+//     var config = {
+//         environment : 'AutodeskProduction'
+//     };
+
+//     // Instantiate viewer factory
+//     var viewerFactory = new Autodesk.ADN.Toolkit.Viewer.AdnViewerFactory(
+//         tokenurl,
+//         config);
+
+//     // Allows different urn to be passed as url parameter
+//     var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
+//     var urn = (paramUrn !== '' ? paramUrn : defaultUrn);
+
+//     viewerFactory.getViewablePath (urn,
+//         function(pathInfoCollection) {
+//             var viewerConfig = {
+//                 // viewerType: 'GuiViewer3D'
+//                  viewerType: 'Viewer3D' // If a viewer without a toolbar is wanted
+//             };
+//             viewer = viewerFactory.createViewer(
+//                 $('#viewerDiv')[0],
+//                 viewerConfig);
+//                 console.log('path ', pathInfoCollection.path3d[0].path);
+                
+//             viewer.load(pathInfoCollection.path3d[0].path);
+//         }, onError);    
+// };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// I use this call if you want to get back an object json of your token
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+// var tokenAjax = function(handleData) {
+//       $.ajax({
+//         url:tokenurl,
+//         dataType: 'json',  
+//         success:function(data) {
+//           handleData(data); 
+//         }
+//     });
+// }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// onError Function
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+// function onError(error) {
+//     console.log('Error: ' + error);
+// };

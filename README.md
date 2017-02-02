@@ -44,7 +44,7 @@ It depends on other workflow samples to upload models and retrieve the model URN
   ```
   var defaultUrn = '<replace with your encoded urn>';
   ```
-* Add the following to your www/js/index.js file
+* Uncomment the following to your www/js/index.js file
 
 ```js
 
@@ -127,6 +127,90 @@ function onError(error) {
   ```
 
 * Connect to you local server using a WebGL-compatible browser: [http://localhost:3000/](http://localhost:3000/)
+
+
+## Viewer - Extensions (Extra Step)
+
+If you are done with the display of your translated model. You can start integrating Viewer interaction with custom JS Extensions. 
+
+In your www/js/index.js file, You will find the following simple extensions. Make sure you uncomment the following functions.
+
+``` js
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Load Viewer Background Color Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+  function loadChangeBackground (){
+          viewer.setBackgroundColor(255,255, 255, 255,255, 255);
+  }
+
+ /////////////////////////////////////////////////////////////////////////////////
+//
+// Unload Viewer Background Color Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+  function unloadChangeBackground (){
+         viewer.setBackgroundColor(169,169,169, 255,255, 255);
+  }
+
+```
+
+Also in your www/index.html, inside of the Div Container for your viewer, you will find the following buttons added. Make sure you uncomment the Extension button html code.
+
+``` html
+    <div class="container">
+        <!-- This is where your viewer should attach -->
+        <div class="center-block" id="viewerDiv"></div>
+
+
+         <!-- Extension Buttons -->
+        
+  <!--  <div class="myButton" id="background" onclick="loadChangeBackground()">Load Background</div>
+        <div class="myButton" id="background" onclick="unloadChangeBackground()">Unload Background</div> -->
+        
+    </div><!-- /container -->
+```
+
+And last, to have some styling in our new buttons, make sure you uncomment the following code which you can find in your www/css/main.css file.
+
+``` css
+
+h4 {
+  color: white;
+}
+
+/*.myButton {
+      background-color: white;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      display:inline-block;
+      cursor:pointer;
+      font-family:Verdana;
+      font-size:17px;
+      padding:16px 31px;
+      text-decoration:none;
+      margin-top: 1em;
+      -webkit-transition-duration: 0.4s; 
+      transition-duration: 0.4s;
+}
+
+.myButton:hover {
+      background-color: #4CAF50; 
+      color: white;
+}
+
+.myButton:active {
+      position:relative;
+      top:1px;
+}*/
+
+
+```
 
 ## License
 

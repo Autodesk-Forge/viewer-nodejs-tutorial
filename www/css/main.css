@@ -33,3 +33,29 @@ h4 {
   color: white;
 }
 
+/*.myButton {
+      background-color: white;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      display:inline-block;
+      cursor:pointer;
+      font-family:Verdana;
+      font-size:17px;
+      padding:16px 31px;
+      text-decoration:none;
+      margin-top: 1em;
+      -webkit-transition-duration: 0.4s; 
+      transition-duration: 0.4s;
+}
+
+.myButton:hover {
+      background-color: #4CAF50; 
+      color: white;
+}
+
+.myButton:active {
+      position:relative;
+      top:1px;
+}*/
+

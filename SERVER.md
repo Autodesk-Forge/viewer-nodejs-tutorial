@@ -5,7 +5,7 @@
 Step 1 - Server.js
 <a name="Step1"></a>
 
-Add the following to your Server.js file.
+Uncomment the following from your Server.js file.
 
 ```js
 var favicon = require('serve-favicon');
@@ -35,7 +35,7 @@ Step 2 - Api.js route
 <a name="Step2"></a>
 
 
-Create your api.js file under routes folder to obtain your authorization token. 
+In your api.js file under routes folder, uncomment the below code in order to obtain your authorization token. 
 Make sure you have created your credentials.js file and have added your API Keys.
 
 ```js

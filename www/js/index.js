@@ -16,8 +16,8 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
-// var defaultUrn = '<Replace with your ENCODED Base64 URN>';
-// var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
+//var defaultUrn = '<replace with your encoded urn>';
+//var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -42,8 +42,8 @@
 //     viewerFactory.getViewablePath (urn,
 //         function(pathInfoCollection) {
 //             var viewerConfig = {
-//                 // viewerType: 'GuiViewer3D'
-//                  viewerType: 'Viewer3D' // If a viewer without a toolbar is wanted
+//                 //viewerType: 'GuiViewer3D'
+//                 viewerType: 'Viewer3D' // If a viewer without a toolbar is wanted
 //             };
 //             viewer = viewerFactory.createViewer(
 //                 $('#viewerDiv')[0],
@@ -79,3 +79,26 @@
 // function onError(error) {
 //     console.log('Error: ' + error);
 // };
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Load Viewer Background Color Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+  // function loadChangeBackground (){
+  //        viewer.setBackgroundColor(255,255, 255, 255,255, 255);
+  // }
+
+ /////////////////////////////////////////////////////////////////////////////////
+//
+// Unload Viewer Background Color Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+  // function unloadChangeBackground (){
+  //        viewer.setBackgroundColor(169,169,169, 255,255, 255);
+  // }
+

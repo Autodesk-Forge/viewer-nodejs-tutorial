@@ -1,16 +1,33 @@
 # Forge Viewer - NodeJS Tutorial
-Simple Getting Started with Forge Viewer API
+
+
+Getting Started with Forge Viewer API
+
+[![Node.js](https://img.shields.io/badge/Node.js-4.4.3-blue.svg)](https://nodejs.org/)
+[![npm](https://img.shields.io/badge/npm-2.15.1-blue.svg)](https://www.npmjs.com/)
+![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
+
+[![oAuth2](https://img.shields.io/badge/oAuth2-v1-green.svg)](http://developer.autodesk.com/)
+[![Viewer](https://img.shields.io/badge/Viewer-v2-green.svg)](http://developer.autodesk.com/)
+
 
 ## Description
 This web application implements a basic Node.js server and JavaScript/HTML5 client. It does not demonstrate how to upload a model to the Autodesk server for translation. See instructions below on how to prepare a model to be consumed in this sample.
 
+This sample show a simple integration of the [Viewer API](https://developer.autodesk.com/en/docs/viewer/v2/overview/). The front-end will look like:
+  
+![](www/images/indexpage.png)
+
 ## Dependencies
 Install Node.js on your machine and clone this repo. Download the project dependencies using npm before launching the app by running 
 the following command in the project root directory:
+
 ```
 npm install
 ```
 This will install the following node.js modules in the project:
+
 - express
 - request
 - serve-favicon
@@ -19,39 +36,28 @@ As said, this sample does not include the workflow of uploading models to the se
 It depends on other workflow samples to upload models and retrieve the model URNs, as explained in the Setup/Usage Instructions.
 
 
-## Setup/Usage Instructions
+## Model Uploader
  
-* Apply for your own credentials (API keys) from [developer.autodesk.com](http://developer.autodesk.com)
-* From the sample root folder, rename or copy the ./credentials_.js file into ./credentials.js <br />
-  * Windows <br />
-    ```
-    copy credentials_.js credentials.js 
-	```
-  * OSX/Linux <br />
-    ```
-    cp credentials_.js credentials.js  
-	```
-* Replace the placeholders with your own keys in credentials.js, line #25 and #26 <br />
-  ```
-  client_id: process.env.CONSUMERKEY || '<replace with your consumer key>',
-  
-  client_secret: process.env.CONSUMERSECRET || '<replace with your consumer secret>',
-  ```
-* Upload one of your models to your account and get its URN using the following website:
+Upload one of your models to your account and get its URN using the following website:
+
   - [Model Uploader](https://models.autodesk.io/) 
   
-* Copy the URN which was generated in the previous step in file /www/index.js at line #19 <br />Note: the URN needs to be base64 encoded as mentioned [here](https://developer.autodesk.com/en/docs/model-derivative/v2/tutorials/prepare-file-for-viewer/) under "Step 1: Convert the source URN into a Base64-Encoded URN" but the previous site gives it back encoded already.<br />
-  ```
-  var defaultUrn = '<replace with your encoded urn>';
-  ```
-* Uncomment the following to your www/js/index.js file
+Copy the URN which was generated in the previous step in file /www/index.js at line #19 <br />Note: the URN needs to be base64 encoded as mentioned [here](https://developer.autodesk.com/en/docs/model-derivative/v2/tutorials/prepare-file-for-viewer/) under 
+"Step 1: Convert the source URN into a Base64-Encoded URN" but the previous site gives it back encoded already.<br />
+  
+```
+var defaultUrn = '<replace with your encoded urn>';
+```
+Uncomment the following to your www/js/index.js file
 
 ```js
 
-
 var defaultUrn = '<Replace with your ENCODED Base64 URN>';
 var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
+ 
+```
 
+```js
 /////////////////////////////////////////////////////////////////////////////////
 //
 // Initialize function to the Viewer
@@ -121,12 +127,45 @@ function onError(error) {
   - [Step 1](SERVER.md#Step1)
   - [Step 2](SERVER.md#Step2)
 
-* Run the server from the Node.js console, by running the following command: <br />
-  ```
-  node server.js 
-  ```
+### Run locally
 
-* Connect to you local server using a WebGL-compatible browser: [http://localhost:3000/](http://localhost:3000/)
+Install [NodeJS](https://nodejs.org).
+
+Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (<b>Terminal</b> on MacOSX/Linux, <b>Git Shell</b> on Windows):
+
+    git clone https://github.com/autodesk-forge/nodejs-forge-viewer-tutorial
+
+Apply for your own credentials (API keys) from [developer.autodesk.com](http://developer.autodesk.com)
+
+To run it, install the required packages, set the enviroment variables with your client ID & secret and finally start it. Via command line, navigate to the folder where this repository was cloned and use the following:
+
+Mac OSX/Linux (Terminal)
+
+    npm install
+    export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM FORGE DEVELOPER PORTAL>>
+    export FORGE_CLIENT_SECRET=<<YOUR FORGE CLIENT SECRET>>
+    npm start
+
+Windows (use <b>Node.js command line</b> from Start menu)
+
+    npm install
+    set FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM FORGE DEVELOPER PORTAL>>
+    set FORGE_CLIENT_SECRET=<<YOUR FORGE CLIENT SECRET>>
+    npm start
+
+Open the browser: [http://localhost:3000](http://localhost:3000).
+
+
+### Deploy on Heroku
+
+To deploy this project to Heroku, be sure to set your environment variables in the dashboard:
+
+- `FORGE_CLIENT_ID`
+- `FORGE_CLIENT_SECRET`
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+Watch [this video](https://www.youtube.com/watch?v=Oqa9O20Gj0c) on how deploy this sample to Heroku.
 
 
 ## Viewer - Extensions (Extra Step)
@@ -217,8 +256,11 @@ h4 {
 That samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 
-## Written by 
+## Written by
 
-Written by [Jaime Rosales](https://twitter.com/afrojme), Autodesk Forge Developer Partner.
+Jaime Rosales D.<br />
+Forge Partner Development <br />
+<a href="http://developer.autodesk.com/">Forge Developer Portal</a> <br />
+<a href="https://twitter.com/afrojme" class="twitter-follow-button" data-show-count="false">Tweet me @Afrojme</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 

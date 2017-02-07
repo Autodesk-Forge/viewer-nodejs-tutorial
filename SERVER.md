@@ -24,8 +24,6 @@ app.use(favicon(__dirname + '/www/images/favicon.ico'));
 /////////////////////////////////////////////////////////////////////////////////
 
 app.use('/api', api);
-console.log('server api ', api);
-
 var server = app.listen(app.get('port'), function() {
     console.log('Server listening on port ' + server.address().port);
 });
@@ -51,7 +49,7 @@ var router = express.Router();
 
 var credentials = (require ('fs').existsSync (__dirname + '/../credentials.js') ?
     require (__dirname + '/../credentials')
-    : (console.log ('No credentials.js file present, assuming using CONSUMERKEY & CONSUMERSECRET system variables.'), 
+    : (console.log ('No credentials.js file present, assuming using FORGE_CLIENT_ID & FORGE_CLIENT_SECRET system variables.'), 
     require (__dirname + '/../credentials_'))) ;
 
 router.get ('/token', function (req, res) {

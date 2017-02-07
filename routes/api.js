@@ -28,7 +28,7 @@
 
 // var credentials = (require ('fs').existsSync (__dirname + '/../credentials.js') ?
 //     require (__dirname + '/../credentials')
-//     : (console.log ('No credentials.js file present, assuming using CONSUMERKEY & CONSUMERSECRET system variables.'), 
+//     : (console.log ('No credentials.js file present, assuming using FORGE_CLIENT_ID & FORGE_CLIENT_SECRET system variables.'), 
 //     require (__dirname + '/../credentials_'))) ;
 
 // router.get ('/token', function (req, res) {

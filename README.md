@@ -41,89 +41,113 @@ It depends on other workflow samples to upload models and retrieve the model URN
 Upload one of your models to your account and get its URN using the following website:
 
   - [Model Uploader](https://models.autodesk.io/) 
-  
-Copy the URN which was generated in the previous step in file /www/index.js at line #19 <br />Note: the URN needs to be base64 encoded as mentioned [here](https://developer.autodesk.com/en/docs/model-derivative/v2/tutorials/prepare-file-for-viewer/) under 
-"Step 1: Convert the source URN into a Base64-Encoded URN" but the previous site gives it back encoded already.<br />
-  
-```
-var defaultUrn = '<replace with your encoded urn>';
-```
-Uncomment the following to your www/js/index.js file
+
+The URN that you will obtain needs to be added to the documentId variable in the following code at line 41, make sure you don't delete the urn word of the string. 
+
+####Uncomment the following to your www/js/index.js file
 
 ```js
 
-var defaultUrn = '<Replace with your ENCODED Base64 URN>';
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Use this call to get back an object json of your token
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
- 
-```
-
-```js
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Initialize function to the Viewer
-//
-/////////////////////////////////////////////////////////////////////////////////
-
-function initialize() {
-    var config = {
-        environment : 'AutodeskProduction'
-    };
-
-    // Instantiate viewer factory
-    var viewerFactory = new Autodesk.ADN.Toolkit.Viewer.AdnViewerFactory(
-        tokenurl,
-        config);
-
-    // Allows different urn to be passed as url parameter
-    var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
-    var urn = (paramUrn !== '' ? paramUrn : defaultUrn);
-
-    viewerFactory.getViewablePath (urn,
-        function(pathInfoCollection) {
-            var viewerConfig = {
-                // viewerType: 'GuiViewer3D'
-                 viewerType: 'Viewer3D' // If a viewer without a toolbar is wanted
-            };
-            viewer = viewerFactory.createViewer(
-                $('#viewerDiv')[0],
-                viewerConfig);
-                console.log('path ', pathInfoCollection.path3d[0].path);
-                
-            viewer.load(pathInfoCollection.path3d[0].path);
-        }, onError);    
-};
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// I use this call if you want to get back an object json of your token
-//
-/////////////////////////////////////////////////////////////////////////////////
-
-var tokenAjax = function(handleData) {
-      $.ajax({
-        url:tokenurl,
-        dataType: 'json',  
-        success:function(data) {
-          handleData(data); 
-        }
-    });
+function tokenAjax() {
+      return $.ajax({
+          url:tokenurl,
+          dataType: 'json'
+      });
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// onError Function
+// Initialize function to the Viewer inside of Async Promise
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-function onError(error) {
-    console.log('Error: ' + error);
-};
+var viewer;
+var options = {};
+var documentId = 'urn:<YOUR_URN_ID>';
+var promise = tokenAjax();
+
+promise.success(function (data) {
+ options = {
+      env: 'AutodeskProduction',
+      accessToken: data.access_token
+    };
+  Autodesk.Viewing.Initializer(options, function onInitialized(){
+      Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+  }); 
+})
+
+/**
+* Autodesk.Viewing.Document.load() success callback.
+* Proceeds with model initialization.
+*/
+ 
+function onDocumentLoadSuccess(doc) {
+
+ // A document contains references to 3D and 2D viewables.
+  var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+  if (viewables.length === 0) {
+      console.error('Document contains no viewables.');
+      return;
+  }
+
+  // Choose any of the avialble viewables
+  var initialViewable = viewables[0];
+  var svfUrl = doc.getViewablePath(initialViewable);
+  var modelOptions = {
+      sharedPropertyDbPath: doc.getPropertyDbPath()
+  };
+
+  var viewerDiv = document.getElementById('viewerDiv');
+  
+  ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
+  /////////////////////// Headless Viewer ///////////////////////////// 
+  viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
+  
+  //////////////////Viewer with Autodesk Toolbar///////////////////////
+  // viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+  //////////////////////////////////////////////////////////////////////
+  viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+}
+
+/**
+* Autodesk.Viewing.Document.load() failuire callback.
+*/
+function onDocumentLoadFailure(viewerErrorCode) {
+  console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+}
+
+/**
+* viewer.loadModel() success callback.
+* Invoked after the model's SVF has been initially loaded.
+* It may trigger before any geometry has been downloaded and displayed on-screen.
+*/
+function onLoadModelSuccess(model) {
+  console.log('onLoadModelSuccess()!');
+  console.log('Validate model loaded: ' + (viewer.model === model));
+  console.log(model);
+}
+
+/**
+* viewer.loadModel() failure callback.
+* Invoked when there's an error fetching the SVF file.
+*/
+function onLoadModelError(viewerErrorCode) {
+  console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+}
 
 ```
 
 ##Now time to setup your server
+We will be using Express for our server
 
-* [Server](SERVER.md#Server)
+* NodeJS [Server](SERVER.md#Server) 
   - [Step 1](SERVER.md#Step1)
   - [Step 2](SERVER.md#Step2)
 

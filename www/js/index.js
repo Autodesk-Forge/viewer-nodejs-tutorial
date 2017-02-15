@@ -16,70 +16,99 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
-//var defaultUrn = '<replace with your encoded urn>';
-//var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
-
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Initialize function to the Viewer
+// Use this call to get back an object json of your token
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-// function initialize() {
-//     var config = {
-//         environment : 'AutodeskProduction'
-//     };
-
-//     // Instantiate viewer factory
-//     var viewerFactory = new Autodesk.ADN.Toolkit.Viewer.AdnViewerFactory(
-//         tokenurl,
-//         config);
-
-//     // Allows different urn to be passed as url parameter
-//     var paramUrn = Autodesk.Viewing.Private.getParameterByName('urn');
-//     var urn = (paramUrn !== '' ? paramUrn : defaultUrn);
-
-//     viewerFactory.getViewablePath (urn,
-//         function(pathInfoCollection) {
-//             var viewerConfig = {
-//                 //viewerType: 'GuiViewer3D'
-//                 viewerType: 'Viewer3D' // If a viewer without a toolbar is wanted
-//             };
-//             viewer = viewerFactory.createViewer(
-//                 $('#viewerDiv')[0],
-//                 viewerConfig);
-//                 console.log('path ', pathInfoCollection.path3d[0].path);
-                
-//             viewer.load(pathInfoCollection.path3d[0].path);
-//         }, onError);    
-// };
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// I use this call if you want to get back an object json of your token
-//
-/////////////////////////////////////////////////////////////////////////////////
-
-// var tokenAjax = function(handleData) {
-//       $.ajax({
-//         url:tokenurl,
-//         dataType: 'json',  
-//         success:function(data) {
-//           handleData(data); 
-//         }
-//     });
+// var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
+// function tokenAjax() {
+//       return $.ajax({
+//           url:tokenurl,
+//           dataType: 'json'
+//       });
 // }
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// onError Function
+// Initialize function to the Viewer inside of Async Promise
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-// function onError(error) {
-//     console.log('Error: ' + error);
-// };
+// var viewer;
+// var options = {};
+// var documentId = 'urn:<YOUR_URN_ID>';
+// var promise = tokenAjax();
 
+// promise.success(function (data) {
+//  options = {
+//       env: 'AutodeskProduction',
+//       accessToken: data.access_token
+//     };
+//   Autodesk.Viewing.Initializer(options, function onInitialized(){
+//       Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+//   }); 
+// })
+
+/**
+* Autodesk.Viewing.Document.load() success callback.
+* Proceeds with model initialization.
+*/
+ 
+// function onDocumentLoadSuccess(doc) {
+
+//  // A document contains references to 3D and 2D viewables.
+//   var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+//   if (viewables.length === 0) {
+//       console.error('Document contains no viewables.');
+//       return;
+//   }
+
+//   // Choose any of the avialble viewables
+//   var initialViewable = viewables[0];
+//   var svfUrl = doc.getViewablePath(initialViewable);
+//   var modelOptions = {
+//       sharedPropertyDbPath: doc.getPropertyDbPath()
+//   };
+
+//   var viewerDiv = document.getElementById('viewerDiv');
+  
+//   ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
+//   /////////////////////// Headless Viewer ///////////////////////////// 
+//   viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
+  
+//   //////////////////Viewer with Autodesk Toolbar///////////////////////
+//   // viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+//   //////////////////////////////////////////////////////////////////////
+//   viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+// }
+
+/**
+* Autodesk.Viewing.Document.load() failuire callback.
+*/
+// function onDocumentLoadFailure(viewerErrorCode) {
+//   console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+// }
+
+/**
+* viewer.loadModel() success callback.
+* Invoked after the model's SVF has been initially loaded.
+* It may trigger before any geometry has been downloaded and displayed on-screen.
+*/
+// function onLoadModelSuccess(model) {
+//   console.log('onLoadModelSuccess()!');
+//   console.log('Validate model loaded: ' + (viewer.model === model));
+//   console.log(model);
+// }
+
+/**
+* viewer.loadModel() failure callback.
+* Invoked when there's an error fetching the SVF file.
+*/
+// function onLoadModelError(viewerErrorCode) {
+//   console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+// }
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -101,4 +130,3 @@
   // function unloadChangeBackground (){
   //        viewer.setBackgroundColor(169,169,169, 255,255, 255);
   // }
-

@@ -1,7 +1,5 @@
-# Forge Viewer - NodeJS Tutorial
+# Viewer - NodeJS - Tutorial
 
-
-Getting Started with Forge Viewer API
 
 [![Node.js](https://img.shields.io/badge/Node.js-4.4.0-blue.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-3.10.7-green.svg)](https://www.npmjs.com/)

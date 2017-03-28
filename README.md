@@ -281,7 +281,7 @@ That samples are licensed under the terms of the [MIT License](http://opensource
 ## Written by
 
 Jaime Rosales D.<br />
-[![Twitter Follow](https://img.shields.io/twitter/follow/afrojme.svg?style=social&label=Follow @Afrojme)](https://twitter.com/afrojme) <br />
+[![Twitter Follow](https://img.shields.io/twitter/follow/afrojme.svg?style=social&label=Follow)](https://twitter.com/AfroJme) <br />
 Forge Partner Development <br />
 <a href="http://developer.autodesk.com/">Forge Developer Portal</a> <br />
 

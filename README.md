@@ -194,6 +194,8 @@ Watch [this video](https://www.youtube.com/watch?v=Oqa9O20Gj0c) on how deploy th
 
 If you are done with the display of your translated model. You can start integrating Viewer interaction with custom JS Extensions. 
 
+You can find more extensions to use with the viewer [here] (https://github.com/Autodesk-Forge/library-javascript-viewer-extensions)
+
 In your www/js/index.js file, You will find the following simple extensions. Make sure you uncomment the following functions.
 
 ``` js
@@ -204,34 +206,89 @@ In your www/js/index.js file, You will find the following simple extensions. Mak
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-  function loadChangeBackground (){
-          viewer.setBackgroundColor(255,255, 255, 255,255, 255);
-  }
+  // function changeBackground (){
+  //        viewer.setBackgroundColor(0, 59, 111, 255,255, 255);
+  // }
 
- /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
 // Unload Viewer Background Color Extension
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-  function unloadChangeBackground (){
-         viewer.setBackgroundColor(169,169,169, 255,255, 255);
-  }
+  // function resetBackground (){     
+  //        viewer.setBackgroundColor(169,169,169, 255,255, 255);
+  // }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Load Viewer Markup3D Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+// 3D Markup extension to display values of the selected objects in the model. 
+
+  // function loadMarkup3D (){
+  //        viewer.loadExtension('Viewing.Extension.Markup3D');
+  // }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Load Viewer Transform Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+// Transformation is allowed with this extension to move object selected in the XYZ
+// position or rotation in XYZ as well.
+
+  // function loadTransform (){
+  //        viewer.loadExtension('Viewing.Extension.Transform');
+  // }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Load Viewer Control Selector Extension
+//
+/////////////////////////////////////////////////////////////////////////////////
+// This extension allows you to remove certain extensions from the original toolbar 
+// provided to you.
+
+  // function loadControlSelector(){
+  //        viewer.loadExtension('_Viewing.Extension.ControlSelector');
+  // }
+
+
 
 ```
 
-Also in your www/index.html, inside of the Div Container for your viewer, you will find the following buttons added. Make sure you uncomment the Extension button html code.
+Also in your www/index.html before the script for the viewer index.js file, make sure you have the following files referenced.
+
+``` html	 
+	<!-- The Viewer Extensions -->
+    <!-- <script src="/extensions/Viewing.Extension.Markup3D.min.js"></script>
+    <script src="/extensions/Viewing.Extension.Transform.min.js"></script>
+    <script src="/extensions/_Viewing.Extension.ControlSelector.min.js"></script> -->
+
+    <!-- The Viewer JS -->
+    <script src="/js/index.js"></script>
+
+
+```
+
+Inside of the Div Container for your viewer, you will find the following buttons added. Make sure you uncomment the Extension button together with it's div that contains.
 
 ``` html
-    <div class="container">
+   <div class="container">
         <!-- This is where your viewer should attach -->
         <div class="center-block" id="viewerDiv"></div>
-
-
-         <!-- Extension Buttons -->
         
-  <!--  <div class="myButton" id="background" onclick="loadChangeBackground()">Load Background</div>
-        <div class="myButton" id="background" onclick="unloadChangeBackground()">Unload Background</div> -->
+        <!-- Extension Buttons -->
+        <!-- <div class="row"> 
+             
+            <div class="myButton" id="background" onclick="changeBackground()">Change Background</div> 
+            <div class="myButton" id="background" onclick="resetBackground()">Reset Background</div> 
+            <div class="myButton" id="background" onclick="loadMarkup3D()">Markup3D</div>
+            <div class="myButton" id="background" onclick="loadTransform()">Transform</div>
+            <div class="myButton" id="background" onclick="loadControlSelector()">Control Selector</div>
+        </div>  -->
         
     </div><!-- /container -->
 ```

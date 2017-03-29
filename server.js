@@ -17,7 +17,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 // var favicon = require('serve-favicon');
-// var api = require('./routes/api');
+// var oauth = require('./routes/oauth');
 // var express = require('express');
 // var app = express();
 
@@ -31,7 +31,7 @@
 // //
 // /////////////////////////////////////////////////////////////////////////////////
 
-// app.use('/api', api);
+// app.use('/oauth', oauth);
 // var server = app.listen(app.get('port'), function() {
 //     console.log('Server listening on port ' + server.address().port);
 // });

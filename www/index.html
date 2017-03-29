@@ -23,11 +23,15 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
     <!-- Viewer production -->
-  
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js"></script>
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
     
-      <!-- The Viewer JS -->
+    <!-- The Viewer Extensions -->
+    <!-- <script src="/extensions/Viewing.Extension.Markup3D.min.js"></script>
+    <script src="/extensions/Viewing.Extension.Transform.min.js"></script>
+    <script src="/extensions/_Viewing.Extension.ControlSelector.min.js"></script> -->
+
+    <!-- The Viewer JS -->
     <script src="/js/index.js"></script>
 
 </head>
@@ -39,12 +43,12 @@
         <div class="container">
             <div class="collapse navbar-collapse" id="navbar-collapse">
            \     <ul class="nav navbar-nav">
-                    <li><a href="https://models.autodesk.io">Model Uploader</a></li>
+                    <li><a href="https://github.com/jaimerosales/modelderivative-nodejs-tutorial">Model Uploader</a></li>
                     <li><a href="https://developer.autodesk.com">Forge Developer Docs</a></li>
                     <li style="margin-top:15px; margin-left:10px"><a href="https://twitter.com/afrojme" class="twitter-follow-button" data-show-count="false">Follow @afrojme</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                     <li><a href="https://github.com/jaimerosales/nodejs-forge-viewer-tutorial">View on GitHub </a></li>
+                     <li><a href="https://github.com/Autodesk-Forge/viewer-nodejs-tutorial">View on GitHub </a></li>
                 </ul>
             </div>
         </div><!--End Container-->
@@ -53,17 +57,21 @@
     <div class="container">
         <!-- This is where your viewer should attach -->
         <div class="center-block" id="viewerDiv"></div>
-
-
-         <!-- Extension Buttons -->
         
-       <!--  <div class="myButton" id="background" onclick="loadChangeBackground()">Load Background</div>
-        <div class="myButton" id="background" onclick="unloadChangeBackground()">Unload Background</div> -->
+        <!-- Extension Buttons -->
+        <!-- <div class="row"> 
+             
+            <div class="myButton" id="background" onclick="changeBackground()">Change Background</div> 
+            <div class="myButton" id="background" onclick="resetBackground()">Reset Background</div> 
+            <div class="myButton" id="background" onclick="loadMarkup3D()">Markup3D</div>
+            <div class="myButton" id="background" onclick="loadTransform()">Transform</div>
+            <div class="myButton" id="background" onclick="loadControlSelector()">Control Selector</div>
+        </div>  -->
         
     </div><!-- /container -->
 
     <footer class="text-center">
-            <p>&copy; Autodesk Forge 2016</p>
+            <p>&copy; Autodesk Forge 2017</p>
     </footer>
 
 </body>

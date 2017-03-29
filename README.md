@@ -194,7 +194,7 @@ Watch [this video](https://www.youtube.com/watch?v=Oqa9O20Gj0c) on how deploy th
 
 If you are done with the display of your translated model. You can start integrating Viewer interaction with custom JS Extensions. 
 
-You can find more extensions to use with the viewer [here] (https://github.com/Autodesk-Forge/library-javascript-viewer-extensions)
+You can find more extensions to use with the viewer [here](https://github.com/Autodesk-Forge/library-javascript-viewer-extensions)
 
 In your www/js/index.js file, You will find the following simple extensions. Make sure you uncomment the following functions.
 

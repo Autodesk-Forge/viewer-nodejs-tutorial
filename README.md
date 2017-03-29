@@ -34,15 +34,15 @@ As said, this sample does not include the workflow of uploading models to the se
 It depends on other workflow samples to upload models and retrieve the model URNs, as explained in the Setup/Usage Instructions.
 
 
-## Model Uploader
+## Model Derivative Uploader
  
-Upload one of your models to your account and get its URN using the following website:
+Upload one of your models to your account and get its URN using the following project:
 
-  - [Model Uploader](https://models.autodesk.io/) 
+  - [Model Derivative Uploader](https://github.com/jaimerosales/modelderivative-nodejs-tutorial) 
 
 The URN that you will obtain needs to be added to the documentId variable in the following code at line 41, make sure you don't delete the urn word of the string. 
 
-####Uncomment the following to your www/js/index.js file
+#### Uncomment the following to your www/js/index.js file
 
 ```js
 

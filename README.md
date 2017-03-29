@@ -142,7 +142,7 @@ function onLoadModelError(viewerErrorCode) {
 
 ```
 
-##Now time to setup your server
+## Now time to setup your server
 We will be using Express for our server
 
 * NodeJS [Server](SERVER.md#Server) 

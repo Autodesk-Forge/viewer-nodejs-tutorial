@@ -25,7 +25,7 @@ var credentials ={
 		client_id: process.env.FORGE_CLIENT_ID || '<replace with your client id>',
 		client_secret: process.env.FORGE_CLIENT_SECRET || '<replace with your client secret>',
 		grant_type: 'client_credentials',
-		scope: 'data:read', // Setup the needed scopes for authorizing your Token
+		scope: 'viewables:read', // Setup the needed scopes for authorizing your Token
 
 		// Since we are using a two legged authentication, we will not need the callback URL, we can leave it blank.
 	    callbackUrl: process.env.CALLBACK_URL || '<replace with your callbackUrl>' 

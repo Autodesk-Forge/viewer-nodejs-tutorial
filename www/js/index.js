@@ -16,29 +16,52 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Use this call to get back an object json of your token
-//
-/////////////////////////////////////////////////////////////////////////////////
 
-// var tokenurl = window.location.protocol + '//' + window.location.host + '/oauth/token';
-// function tokenAjax() {
-//       return $.ajax({
-//           url:tokenurl,
-//           dataType: 'json'
-//       });
-// }
+        var viewer;
+        var options = {
+            env: 'AutodeskProduction',
+            getAccessToken: getForgeToken
+        }
 
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Initialize function to the Viewer inside of Async Promise
-//
-/////////////////////////////////////////////////////////////////////////////////
+        var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cmVhY3QtbGF5b3V0LXNhbXBsZS12aWV3ZXIzN2lleGRiZG5xY2Franplc2JocWNlcTVhc2htNzh2My9VcmJhbkhvdXNlLTIwMTUucnZ0';
+
+        Autodesk.Viewing.Initializer(options, function onInitialized() {
+          Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+        });
+    
+        /**
+         * Autodesk.Viewing.Document.load() success callback.
+         * Proceeds with model initialization.
+         */
+        function onDocumentLoadSuccess(doc) {
+
+          // A document contains references to 3D and 2D viewables.
+          var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+            'type': 'geometry',
+              'role': '3d'
+          }, true);
+          if (viewables.length === 0) {
+            console.error('Document contains no viewables.');
+            return;
+          }
+
+          // Choose any of the avialble viewables
+          var initialViewable = viewables[8];
+          var svfUrl = doc.getViewablePath(initialViewable);
+          var modelOptions = {
+            sharedPropertyDbPath: doc.getPropertyDbPath()
+          };
+
+          var viewerDiv = document.getElementById('viewerDiv');
+          viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+          viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+        }
+
+
 
 // var viewer;
 // var options = {};
-// var documentId = 'urn:<YOUR_URN_ID>';
+// var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cmVhY3QtbGF5b3V0LXNhbXBsZS12aWV3ZXIzN2lleGRiZG5xY2Franplc2JocWNlcTVhc2htNzh2My9VcmJhbkhvdXNlLTIwMTUucnZ0';
 // var promise = tokenAjax();
 
 // promise.success(function (data) {
@@ -51,64 +74,64 @@
 //   }); 
 // })
 
-/**
-* Autodesk.Viewing.Document.load() success callback.
-* Proceeds with model initialization.
-*/
+// /**
+// * Autodesk.Viewing.Document.load() success callback.
+// * Proceeds with model initialization.
+// */
  
-//function onDocumentLoadSuccess(doc) {
+// function onDocumentLoadSuccess(doc) {
 
- // A document contains references to 3D and 2D viewables.
-  // var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
-  // if (viewables.length === 0) {
-  //     console.error('Document contains no viewables.');
-  //     return;
-  // }
+//  // A document contains references to 3D and 2D viewables.
+//   var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+//   if (viewables.length === 0) {
+//       console.error('Document contains no viewables.');
+//       return;
+//   }
 
-  // Choose any of the avialble viewables
-  // var initialViewable = viewables[0];
-  // var svfUrl = doc.getViewablePath(initialViewable);
-  // var modelOptions = {
-  //     sharedPropertyDbPath: doc.getPropertyDbPath()
-  // };
+//   //Choose any of the avialble viewables
+//   var initialViewable = viewables[0];
+//   var svfUrl = doc.getViewablePath(initialViewable);
+//   var modelOptions = {
+//       sharedPropertyDbPath: doc.getPropertyDbPath()
+//   };
 
-  // var viewerDiv = document.getElementById('viewerDiv');
+//   var viewerDiv = document.getElementById('viewerDiv');
   
-  ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
-  /////////////////////// Headless Viewer ///////////////////////////// 
-  //viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
+//   ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
+//   /////////////////////// Headless Viewer ///////////////////////////// 
+//   //viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
   
-  //////////////////Viewer with Autodesk Toolbar///////////////////////
-  //viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
-  //////////////////////////////////////////////////////////////////////
-  //viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
-//}
+//   //////////////////Viewer with Autodesk Toolbar///////////////////////
+//   viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+//   //////////////////////////////////////////////////////////////////////
+//   viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+// }
 
 /**
 * Autodesk.Viewing.Document.load() failuire callback.
 */
-// function onDocumentLoadFailure(viewerErrorCode) {
-//   console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
-// }
+function onDocumentLoadFailure(viewerErrorCode) {
+  console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+}
 
 /**
 * viewer.loadModel() success callback.
 * Invoked after the model's SVF has been initially loaded.
 * It may trigger before any geometry has been downloaded and displayed on-screen.
 */
-// function onLoadModelSuccess(model) {
-//   console.log('onLoadModelSuccess()!');
-//   console.log('Validate model loaded: ' + (viewer.model === model));
-//   console.log(model);
-// }
+function onLoadModelSuccess(model) {
+  console.log('onLoadModelSuccess()!');
+  console.log('Validate model loaded: ' + (viewer.model === model));
+  console.log(model);
+}
 
 /**
 * viewer.loadModel() failure callback.
 * Invoked when there's an error fetching the SVF file.
 */
-// function onLoadModelError(viewerErrorCode) {
-//   console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
-// }
+function onLoadModelError(viewerErrorCode) {
+  console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////

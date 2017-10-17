@@ -182,6 +182,7 @@ app.use(session({
 // prepare server routing
 app.use('/', express.static(__dirname + '/../www')); // redirect static calls
 app.use('/js', express.static(__dirname + '/../node_modules/bootstrap/dist/js')); // redirect static calls
+app.use('/js', express.static(__dirname + '/../node_modules/moment/min')); // redirect static calls
 app.use('/js', express.static(__dirname + '/../node_modules/jquery/dist')); // redirect static calls
 app.use('/css', express.static(__dirname + '/../node_modules/bootstrap/dist/css')); // redirect static calls
 app.use('/css', express.static(__dirname + '/../node_modules/font-awesome/css')) // redirect static calls
@@ -370,14 +371,14 @@ Mac OSX/Linux (Terminal)
     npm install
     export FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM FORGE DEVELOPER PORTAL>>
     export FORGE_CLIENT_SECRET=<<YOUR FORGE CLIENT SECRET>>
-    npm start
+    npm run dev
 
 Windows (use <b>Node.js command line</b> from Start menu)
 
     npm install
     set FORGE_CLIENT_ID=<<YOUR CLIENT ID FROM FORGE DEVELOPER PORTAL>>
     set FORGE_CLIENT_SECRET=<<YOUR FORGE CLIENT SECRET>>
-    npm start
+    npm run dev
 
 Open the browser: [http://localhost:3000](http://localhost:3000).
 

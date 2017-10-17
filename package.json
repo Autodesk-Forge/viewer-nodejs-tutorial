@@ -4,8 +4,9 @@
   "description": "Getting Started with Viewer and NodeJS",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node start.js",
+    "dev": "node start.js",
+    "nodemon": "nodemon start.js --ignore www/"
   },
   "repository": {
     "type": "git",

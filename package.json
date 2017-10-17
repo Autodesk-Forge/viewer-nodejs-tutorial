@@ -12,10 +12,18 @@
     "url": "git+https://github.com/Autodesk-Forge/viewer-nodejs-tutorial.git"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
+    "bootstrap": "*",
+    "express-session": "^1.13.0",
     "font-awesome": "^4.7.0",
+    "forge-apis": "^0.4.1",
+    "jquery": "*",
+    "moment": "*",
+    "oauth": "^0.9.14",
     "request": "^2.72.0",
     "serve-favicon": "^2.3.0"
+
   },
   "author": "Jaime Rosales",
   "license": "MIT",

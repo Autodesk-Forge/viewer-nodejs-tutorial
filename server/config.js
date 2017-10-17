@@ -25,7 +25,7 @@ module.exports = {
   // this this callback URL when creating your client ID and secret
   callbackURL: process.env.FORGE_CALLBACK_URL || 'http://localhost:3000/api/forge/callback/oauth',
 
-  // set enviroment variables or hard-code here
+  // set environment variables or hard-code here
   credentials: {
     client_id: process.env.FORGE_CLIENT_ID || '',
     client_secret: process.env.FORGE_CLIENT_SECRET || ''

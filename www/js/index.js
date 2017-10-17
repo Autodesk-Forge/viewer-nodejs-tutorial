@@ -36,17 +36,17 @@ Autodesk.Viewing.Initializer(options, function onInitialized() {
 function onDocumentLoadSuccess(doc) {
 
     // A document contains references to 3D and 2D viewables.
-    var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+    var viewable = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
         'type': 'geometry',
         'role': '3d'
     }, true);
-    if (viewables.length === 0) {
+    if (viewable.length === 0) {
         console.error('Document contains no viewables.');
         return;
     }
 
-    // Choose any of the avialble viewables
-    var initialViewable = viewables[8];
+    // Choose any of the available viewable
+    var initialViewable = viewable[8];
     var svfUrl = doc.getViewablePath(initialViewable);
     var modelOptions = {
         sharedPropertyDbPath: doc.getPropertyDbPath()
@@ -54,10 +54,11 @@ function onDocumentLoadSuccess(doc) {
 
     var viewerDiv = document.getElementById('viewerDiv');
 
-
     ///////////////USE ONLY ONE OPTION AT A TIME/////////////////////////
+
     /////////////////////// Headless Viewer /////////////////////////////
     // viewer = new Autodesk.Viewing.Viewer3D(viewerDiv);
+    //////////////////////////////////////////////////////////////////////
 
     //////////////////Viewer with Autodesk Toolbar///////////////////////
     viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
@@ -100,9 +101,9 @@ function onLoadModelError(viewerErrorCode) {
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-// function changeBackground (){
-//        viewer.setBackgroundColor(0, 59, 111, 255,255, 255);
-// }
+function changeBackground (){
+       viewer.setBackgroundColor(0, 59, 111, 255,255, 255);
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -110,9 +111,9 @@ function onLoadModelError(viewerErrorCode) {
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-// function resetBackground (){
-//        viewer.setBackgroundColor(169,169,169, 255,255, 255);
-// }
+function resetBackground (){
+       viewer.setBackgroundColor(169,169,169, 255,255, 255);
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -121,9 +122,9 @@ function onLoadModelError(viewerErrorCode) {
 /////////////////////////////////////////////////////////////////////////////////
 // 3D Markup extension to display values of the selected objects in the model. 
 
-// function loadMarkup3D (){
-//        viewer.loadExtension('Viewing.Extension.Markup3D');
-// }
+function loadMarkup3D (){
+       viewer.loadExtension('Viewing.Extension.Markup3D');
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -133,9 +134,9 @@ function onLoadModelError(viewerErrorCode) {
 // Transformation is allowed with this extension to move object selected in the XYZ
 // position or rotation in XYZ as well.
 
-// function loadTransform (){
-//        viewer.loadExtension('Viewing.Extension.Transform');
-// }
+function loadTransform (){
+       viewer.loadExtension('Viewing.Extension.Transform');
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -145,7 +146,7 @@ function onLoadModelError(viewerErrorCode) {
 // This extension allows you to remove certain extensions from the original toolbar 
 // provided to you.
 
-// function loadControlSelector(){
-//        viewer.loadExtension('_Viewing.Extension.ControlSelector');
-// }
+function loadControlSelector(){
+       viewer.loadExtension('_Viewing.Extension.ControlSelector');
+}
 

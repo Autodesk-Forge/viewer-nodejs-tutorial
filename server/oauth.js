@@ -37,7 +37,6 @@ var config = require('./config');
 
 // wait for Autodesk callback (oAuth callback)
 router.get('/user/token', function (req, res) {
-   // var tokenSession = new token(req.session);
 
     try {
       var client_id = config.credentials.client_id;

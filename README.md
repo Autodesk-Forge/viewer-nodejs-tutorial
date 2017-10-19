@@ -274,7 +274,7 @@ function onDocumentLoadSuccess(doc) {
     }
 
     // Choose any of the available viewable
-    var initialViewable = viewable[8];
+    var initialViewable = viewable[0]; // You can check for other available views in your model,
     var svfUrl = doc.getViewablePath(initialViewable);
     var modelOptions = {
         sharedPropertyDbPath: doc.getPropertyDbPath()

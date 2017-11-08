@@ -14,8 +14,9 @@
 This web application implements a basic Node.js server and JavaScript/HTML5 client. It does not demonstrate how to upload a model to the Autodesk server for translation. See instructions below on how to prepare a model to be consumed in this sample.
 
 This sample show a simple integration of the [Viewer](https://developer.autodesk.com/en/docs/viewer/v2/overview/). The front-end will look like:
-  
-![](www/images/indexpage.png)
+
+### Thumbnail
+![thumbnail](www/images/indexpage.png)
 
 ## Dependencies
 

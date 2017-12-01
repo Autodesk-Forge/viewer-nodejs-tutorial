@@ -24,7 +24,7 @@ Install [NodeJS](https://nodejs.org).
 
 Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (<b>Terminal</b> on MacOSX/Linux, <b>Git Shell</b> on Windows):
 
-    git clone https://github.com/autodesk-forge/nodejs-forge-viewer-tutorial
+    git clone https://github.com/Autodesk-Forge/viewer-nodejs-tutorial.git
 
 Apply for your own credentials (API keys) from [developer.autodesk.com](http://developer.autodesk.com)
 

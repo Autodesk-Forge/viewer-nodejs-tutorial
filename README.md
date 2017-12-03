@@ -14,8 +14,9 @@
 This web application implements a basic Node.js server and JavaScript/HTML5 client. It does not demonstrate how to upload a model to the Autodesk server for translation. See instructions below on how to prepare a model to be consumed in this sample.
 
 This sample show a simple integration of the [Viewer](https://developer.autodesk.com/en/docs/viewer/v2/overview/). The front-end will look like:
-  
-![](www/images/indexpage.png)
+
+### Thumbnail
+![thumbnail](www/images/indexpage.png)
 
 ## Dependencies
 
@@ -23,7 +24,7 @@ Install [NodeJS](https://nodejs.org).
 
 Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (<b>Terminal</b> on MacOSX/Linux, <b>Git Shell</b> on Windows):
 
-    git clone https://github.com/autodesk-forge/nodejs-forge-viewer-tutorial
+    git clone https://github.com/Autodesk-Forge/viewer-nodejs-tutorial.git
 
 Apply for your own credentials (API keys) from [developer.autodesk.com](http://developer.autodesk.com)
 

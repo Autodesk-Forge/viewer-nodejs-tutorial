@@ -43,6 +43,7 @@ app.use('/js', express.static(__dirname + '/../node_modules/moment/min')); // re
 app.use('/js', express.static(__dirname + '/../node_modules/jquery/dist')); // redirect static calls
 app.use('/css', express.static(__dirname + '/../node_modules/bootstrap/dist/css')); // redirect static calls
 app.use('/css', express.static(__dirname + '/../node_modules/font-awesome/css')) // redirect static calls
+app.use('/fonts', express.static(__dirname + '/../node_modules/font-awesome/fonts')) // redirect static calls
 app.use('/fonts', express.static(__dirname + '/../node_modules/bootstrap/dist/fonts')); // redirect static calls
 app.set('port', process.env.PORT || 3000); // main port
 
